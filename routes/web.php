@@ -21,3 +21,7 @@ Route::namespace('BackEnd')->prefix('admin')->group(function (){
     Route::get('/', 'Home@index');
     
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
