@@ -4,14 +4,21 @@ namespace App\Http\Controllers\BackEnd;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Video;
+use App\Requests\Backend\Videos\Store;
 
-class Videos extends Controller
+class Videos extends BackEndController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(Video $model)
+    {
+        parent::__construct($model);
+    }
     public function index()
     {
         //
@@ -33,9 +40,10 @@ class Videos extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Store $request)
     {
-        //
+        $this->model->created($request->all());
+        return redirect()->route('page.index');
     }
 
     /**
@@ -67,9 +75,13 @@ class Videos extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Store $request, $id)
     {
-        //
+        $row = $this->model->FindOrFail($id);
+        $row->update($request->all());
+
+        return redirect()->route('pages.edit',
+        ['id'=>$row->id]);
     }
 
     /**

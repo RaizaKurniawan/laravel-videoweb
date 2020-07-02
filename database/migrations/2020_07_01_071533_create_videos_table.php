@@ -14,8 +14,17 @@ class CreateVideosTable extends Migration
     public function up()
     {
         Schema::create('videos', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('meta_keywords');
+            $table->string('meta_des');
+            $table->text('des');
+            $table->string('youtube');
+            $table->boolean('published')->default(1);
+            $table->integer('user_id');
+            $table->integer('cat_id');
+            $table->string('image');
+            $table->timestamps();   
         });
     }
 

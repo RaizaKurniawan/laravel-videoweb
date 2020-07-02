@@ -1,11 +1,14 @@
 @extends('back-end.layout.app')
 
 @section('title')
-{{    $pageTitle = "Home Page" }}
+{{    
+    $modulName = "Users",
+    $pageTitle = "Edit" . $modulName ,
+    $pageDes = "Here you can edit " .$modulName
+    }}
 @endsection
 
 @push('css')
-
     
 @endpush
 
@@ -18,9 +21,6 @@
             @endslot
     @endcomponent
     
+
  
 @endsection
-
-@push('js')
-
-@endpush

@@ -20,6 +20,14 @@ Route::get('/', function () {
 Route::namespace('BackEnd')->prefix('admin')->group(function (){
     Route::get('/', 'Home@index');
     
+    Route::resource('users', 'Users')->except(['show','delete']);
+       
+    
+    
+
+    Route::resource('pages', 'Pages')->except(['show']);
+    Route::resource('videos', 'Videos')->except(['show']);
+    
 });
 
 Auth::routes();
